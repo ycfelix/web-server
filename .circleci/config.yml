@@ -2,7 +2,7 @@ version: 2.1
 
 deploy:
 docker:
-  - image: image: circleci/openjdk:8-jdk-node
+  - image: circleci/openjdk:8-jdk-node
 steps:
   - restore_cache:
       key: maven-{{ checksum "/tmp/maven_cache_seed" }}

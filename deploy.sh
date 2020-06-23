@@ -1,6 +1,7 @@
 #!/bin/bash
 
 tar -zcvf webserver.tar.gz .
+chmod 400 id_rsa
 scp -i id_rsa webserver.tar.gz ubuntu@18.217.87.1:/home/ubuntu
 
 #Here you extract your archive on EC2 using SSH

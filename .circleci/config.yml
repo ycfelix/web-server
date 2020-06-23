@@ -1,5 +1,10 @@
 version: 2.1
 
+deployment:
+    master:
+        branch: master
+        commands:
+          - ./deploy.sh`
 orbs:
   maven: circleci/maven@0.0.12
 
@@ -7,8 +12,4 @@ workflows:
   maven_test:
     jobs:
       - maven/test # checkout, build, test, and upload test results
-  deployment:
-    master:
-        branch: master
-        commands:
-          - ./deploy.sh`
+      - deployment

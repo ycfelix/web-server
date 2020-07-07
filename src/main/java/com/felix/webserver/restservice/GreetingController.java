@@ -2,6 +2,7 @@ package com.felix.webserver.restservice;
 
 import java.util.concurrent.atomic.AtomicLong;
 
+import com.felix.webserver.Model.Greeting;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;

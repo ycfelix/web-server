@@ -1,4 +1,4 @@
-package com.felix.webserver.restservice;
+package com.felix.webserver.Model;
 
 public class Greeting {
 

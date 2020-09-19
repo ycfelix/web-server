@@ -30,3 +30,4 @@ build/
 ### VS Code ###
 .vscode/
 webserver.tar.gz
+src/main/resources/application.yml

@@ -17,17 +17,18 @@ import java.util.List;
 @Table(name = "course")
 public class CourseVo{
 
-    public CourseVo(Long id){
+    public CourseVo(Long id, Long sum){
         this.id = id;
+        this.sum = sum;
     }
 
     @Id
     private Long id;
 
+    private Long sum;
+
     @JsonManagedReference
     @OneToMany(fetch = FetchType.EAGER,mappedBy = "course",orphanRemoval = true, cascade = {CascadeType.ALL})
     private List<Student> students;
 
-//    @Transient
-//    private  String[] bookNames;
 }

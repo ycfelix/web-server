@@ -23,7 +23,9 @@ public class Book extends BaseEntity implements Serializable {
 
     @JsonBackReference
     @ManyToOne
-    @JoinColumn(name = "student_id")
+    @JoinColumn(name = "studentId")
     Student student;
+
+    Long price;
 
 }

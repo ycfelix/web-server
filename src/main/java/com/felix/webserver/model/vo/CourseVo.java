@@ -21,6 +21,7 @@ public class CourseVo{
     @Id
     private Long id;
 
+    //solution without extra params
     @Formula("(select GROUP_CONCAT(b.name order by b.name) from " +
             "student s LEFT JOIN book b on b.student_id = s.id where s.course_id = id)")
     private String books;

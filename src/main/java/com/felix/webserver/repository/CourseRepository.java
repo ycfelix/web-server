@@ -1,6 +1,7 @@
 package com.felix.webserver.repository;
 
 import com.felix.webserver.model.Course;
+import com.felix.webserver.model.vo.CourseView;
 import com.felix.webserver.model.vo.CourseVo;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -12,6 +13,7 @@ public interface CourseRepository extends JpaRepository<Course, Long> {
 
     List<CourseVo> customRetrieve(Long id);
 
-    @Query(value = "SELECT c.id, c.name from course c where c.id = ?1", nativeQuery = true)
-    List<CourseVo> customRetrieveJPQL(Long id);
+    //ultimate solution, need to test if sorting is possible
+    @Query(value = "SELECT c.id, c.name from course c LEFT JOIN student s on s.course_id = c.id where c.id = ?1", nativeQuery = true)
+    List<CourseView> customRetrieveJPQL(Long id);
 }

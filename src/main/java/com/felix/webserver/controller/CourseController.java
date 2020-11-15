@@ -1,5 +1,6 @@
 package com.felix.webserver.controller;
 
+import com.felix.webserver.model.vo.CourseView;
 import com.felix.webserver.model.vo.CourseVo;
 import com.felix.webserver.repository.CourseRepository;
 import org.hibernate.EmptyInterceptor;
@@ -29,7 +30,7 @@ public class CourseController {
         return courseRepository.customRetrieve(id);
     }
     @GetMapping("/jpql")
-    public List<CourseVo> retrieveCourseJPQL(@RequestParam Long id) {
+    public List<CourseView> retrieveCourseJPQL(@RequestParam Long id) {
         return courseRepository.customRetrieveJPQL(id);
     }
 

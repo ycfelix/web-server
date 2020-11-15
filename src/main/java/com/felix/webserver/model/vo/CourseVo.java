@@ -5,6 +5,7 @@ import com.felix.webserver.model.BaseEntity;
 import com.felix.webserver.model.Course;
 import com.felix.webserver.model.Student;
 import lombok.*;
+import org.hibernate.annotations.Formula;
 
 import javax.persistence.*;
 import java.util.List;
@@ -17,18 +18,16 @@ import java.util.List;
 @Table(name = "course")
 public class CourseVo{
 
-    public CourseVo(Long id, Long sum){
-        this.id = id;
-        this.sum = sum;
-    }
-
     @Id
     private Long id;
 
-    private Long sum;
+    @Formula("(select GROUP_CONCAT(b.name order by b.name) from " +
+            "student s LEFT JOIN book b on b.student_id = s.id where s.course_id = id)")
+    private String books;
 
     @JsonManagedReference
     @OneToMany(fetch = FetchType.EAGER,mappedBy = "course",orphanRemoval = true, cascade = {CascadeType.ALL})
     private List<Student> students;
+
 
 }

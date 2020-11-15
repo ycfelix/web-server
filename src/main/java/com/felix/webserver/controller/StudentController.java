@@ -6,11 +6,14 @@ import com.felix.webserver.model.vo.CourseVo;
 import com.felix.webserver.repository.CourseRepository;
 import com.felix.webserver.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.interceptor.TransactionAspectSupport;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.OutputStream;
 import java.util.List;
 
 @RestController
@@ -58,6 +61,18 @@ public class StudentController {
         return studentRepository.findAll();
     }
 
+    @GetMapping("/file")
+    public void getFile(@RequestParam Long id, HttpServletResponse response) {
+        String content = "abcdevgc";
+        String s = "abc/s/c/123124-23123/a.csv";
+        response.setHeader(HttpHeaders.CONTENT_DISPOSITION,String.format("attachment; filename= \"%s\"",s));
+        try(OutputStream outputStream = response.getOutputStream()) {
+            outputStream.write(content.getBytes());
+            outputStream.flush();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
 
 }

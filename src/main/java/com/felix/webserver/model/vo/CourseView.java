@@ -7,7 +7,5 @@ import java.util.List;
 public interface CourseView {
     Long getId();
 
-    String getBooks();
-
-    List<Student> getStudents();
+    String getStudents();
 }

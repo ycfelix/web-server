@@ -4,6 +4,9 @@ import com.felix.webserver.model.Book;
 import com.felix.webserver.model.Student;
 import com.felix.webserver.model.vo.CourseVo;
 import com.felix.webserver.repository.custom.CourseRepositoryCustom;
+import org.hibernate.dialect.MySQL5Dialect;
+import org.hibernate.dialect.function.SQLFunctionTemplate;
+import org.hibernate.type.StandardBasicTypes;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -16,6 +19,14 @@ public class CourseRepositoryImpl implements CourseRepositoryCustom {
 
     @PersistenceContext
     EntityManager entityManager;
+
+    public static class MyOwnSQLDialect extends MySQL5Dialect {
+
+        public MyOwnSQLDialect() {
+            super();
+            this.registerFunction("group_concat", new SQLFunctionTemplate(StandardBasicTypes.STRING, "group_concat(?1)"));
+        }
+    }
 
     @Override
     public List<CourseVo> customRetrieve(Long id) {

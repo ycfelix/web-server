@@ -20,14 +20,6 @@ public class CourseRepositoryImpl implements CourseRepositoryCustom {
     @PersistenceContext
     EntityManager entityManager;
 
-    public static class MyOwnSQLDialect extends MySQL5Dialect {
-
-        public MyOwnSQLDialect() {
-            super();
-            this.registerFunction("group_concat", new SQLFunctionTemplate(StandardBasicTypes.STRING, "group_concat(?1)"));
-        }
-    }
-
     @Override
     public List<CourseVo> customRetrieve(Long id) {
         var cb = entityManager.getCriteriaBuilder();

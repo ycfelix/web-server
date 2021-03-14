@@ -4,6 +4,7 @@ import com.felix.webserver.model.vo.CourseView;
 import com.felix.webserver.model.vo.CourseVo;
 import com.felix.webserver.repository.CourseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -21,9 +22,12 @@ public class CourseController {
     @Autowired
     CourseRepository courseRepository;
 
+    public String test="123123123";
+
     @GetMapping
-    public List<CourseVo> retrieveCourse(@RequestParam Long id) {
-        return courseRepository.customRetrieve(id);
+    @Cacheable(value="CourseVo", key="#root.target.test+#p0")
+    public List<CourseVo> retrieveCourse(@RequestParam List<Long> id) {
+        return courseRepository.customRetrieve(id.get(0));
     }
 
     @GetMapping("/jpql")

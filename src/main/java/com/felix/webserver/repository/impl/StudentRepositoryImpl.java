@@ -1,7 +1,6 @@
 package com.felix.webserver.repository.impl;
 
-import com.felix.webserver.model.Student;
-import com.felix.webserver.model.vo.CourseVo;
+import com.felix.webserver.repository.model.StudentEntity;
 import com.felix.webserver.repository.custom.StudentRepositoryCustom;
 import org.springframework.data.jpa.repository.Modifying;
 
@@ -18,7 +17,7 @@ public class StudentRepositoryImpl implements StudentRepositoryCustom {
     @Override
     @Modifying
     @Transactional
-    public Student customUpdate(Student student) {
+    public StudentEntity customUpdate(StudentEntity student) {
         return entityManager.merge(student);
     }
 

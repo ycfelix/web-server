@@ -1,10 +1,10 @@
 package com.felix.webserver.repository;
 
-import com.felix.webserver.model.Student;
+import com.felix.webserver.repository.model.StudentEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 @Repository
-public interface StudentRepository extends JpaRepository<Student, Long> {
+public interface StudentRepository extends JpaRepository<StudentEntity, Long> {
 
-    Student customUpdate(Student student);
+    StudentEntity customUpdate(StudentEntity student);
 }

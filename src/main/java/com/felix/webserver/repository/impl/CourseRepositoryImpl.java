@@ -1,19 +1,11 @@
 package com.felix.webserver.repository.impl;
 
-import com.felix.webserver.model.Book;
-import com.felix.webserver.model.Student;
-import com.felix.webserver.model.vo.CourseVo;
+import com.felix.webserver.repository.model.vo.CourseVoEntity;
 import com.felix.webserver.repository.custom.CourseRepositoryCustom;
-import org.hibernate.dialect.MySQL5Dialect;
-import org.hibernate.dialect.function.SQLFunctionTemplate;
-import org.hibernate.type.StandardBasicTypes;
-import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.criteria.JoinType;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class CourseRepositoryImpl implements CourseRepositoryCustom {
 
@@ -21,12 +13,12 @@ public class CourseRepositoryImpl implements CourseRepositoryCustom {
     EntityManager entityManager;
 
     @Override
-    public List<CourseVo> customRetrieve(Long id) {
+    public List<CourseVoEntity> customRetrieve(Long id) {
         var cb = entityManager.getCriteriaBuilder();
-        var cq = cb.createQuery(CourseVo.class);
+        var cq = cb.createQuery(CourseVoEntity.class);
 
 //
-        var courseRoot = cq.from(CourseVo.class);
+        var courseRoot = cq.from(CourseVoEntity.class);
         cq.where(cb.equal(courseRoot.get("id"),id));
         cq.select(courseRoot);
         cq.orderBy(cb.desc(courseRoot.get("books")));

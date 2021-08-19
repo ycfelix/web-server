@@ -1,8 +1,10 @@
 package com.felix.webserver.controller;
 
-import com.felix.webserver.model.vo.CourseView;
-import com.felix.webserver.model.vo.CourseVo;
+import com.felix.webserver.model.Course;
+import com.felix.webserver.repository.model.vo.CourseViewEntity;
+import com.felix.webserver.repository.model.vo.CourseVoEntity;
 import com.felix.webserver.repository.CourseRepository;
+import com.felix.webserver.service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.PageRequest;
@@ -20,21 +22,17 @@ import java.util.List;
 public class CourseController {
 
     @Autowired
-    CourseRepository courseRepository;
+    private CourseService courseService;
 
-    public String test="123123123";
 
     @GetMapping
-    @Cacheable(value="CourseVo", key="#root.target.test+#p0")
-    public List<CourseVo> retrieveCourse(@RequestParam List<Long> id) {
-        return courseRepository.customRetrieve(id.get(0));
+    public List<Course> retrieveCourse(@RequestParam List<Long> ids) {
+        return courseService.retrieveCourse(ids);
     }
 
     @GetMapping("/jpql")
-    public List<CourseView> retrieveCourseJPQL(@RequestParam Long id) {
-        var sort = Sort.by(Sort.Direction.ASC,"students");
-        Pageable pageable = PageRequest.of(0,2,sort);
-        return courseRepository.customRetrieveJPQL(id, pageable);
+    public List<Course> retrieveCourseJPQL(@RequestParam Long id) {
+        return courseService.retrieveCourseJPQL(id);
     }
 
 }

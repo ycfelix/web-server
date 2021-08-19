@@ -1,11 +1,10 @@
 package com.felix.webserver.repository.custom;
 
-import com.felix.webserver.model.vo.CourseVo;
-import org.springframework.stereotype.Repository;
+import com.felix.webserver.repository.model.vo.CourseVoEntity;
 
 import java.util.List;
 
 public interface CourseRepositoryCustom {
 
-    List<CourseVo> customRetrieve(Long bookId);
+    List<CourseVoEntity> customRetrieve(Long bookId);
 }

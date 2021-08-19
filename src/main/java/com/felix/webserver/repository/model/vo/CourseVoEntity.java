@@ -1,9 +1,7 @@
-package com.felix.webserver.model.vo;
+package com.felix.webserver.repository.model.vo;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.felix.webserver.model.BaseEntity;
-import com.felix.webserver.model.Course;
-import com.felix.webserver.model.Student;
+import com.felix.webserver.repository.model.StudentEntity;
 import lombok.*;
 import org.hibernate.annotations.Formula;
 
@@ -16,7 +14,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "course")
-public class CourseVo{
+public class CourseVoEntity {
 
     @Id
     private Long id;
@@ -28,7 +26,7 @@ public class CourseVo{
 
     @JsonManagedReference
     @OneToMany(fetch = FetchType.EAGER,mappedBy = "course",orphanRemoval = true, cascade = {CascadeType.ALL})
-    private List<Student> students;
+    private List<StudentEntity> students;
 
 
 }

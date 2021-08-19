@@ -1,4 +1,4 @@
-package com.felix.webserver.model;
+package com.felix.webserver.repository.model;
 
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
@@ -11,11 +11,11 @@ import java.util.Date;
 
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
-public abstract class Auditable<U> {
+public abstract class AuditableEntity {
 
     @CreatedBy
     @Column(updatable = false)
-    protected U createdBy;
+    protected String createdBy;
 
     @CreatedDate
     @Column(updatable = false)
@@ -23,10 +23,12 @@ public abstract class Auditable<U> {
     protected Date createdDate;
 
     @LastModifiedBy
-    protected U lastModifiedBy;
+    protected String lastModifiedBy;
 
     @LastModifiedDate
     @Temporal(TemporalType.TIMESTAMP)
     protected Date lastModifiedDate;
 
+    @Version
+    Long version = 1L;
 }

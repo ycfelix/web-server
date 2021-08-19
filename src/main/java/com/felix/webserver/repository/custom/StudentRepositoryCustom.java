@@ -1,12 +1,8 @@
 package com.felix.webserver.repository.custom;
 
-import com.felix.webserver.model.Student;
-import com.felix.webserver.model.vo.CourseVo;
-import org.springframework.stereotype.Repository;
-
-import java.util.List;
+import com.felix.webserver.repository.model.StudentEntity;
 
 public interface StudentRepositoryCustom {
 
-    Student customUpdate(Student student);
+    StudentEntity customUpdate(StudentEntity student);
 }
